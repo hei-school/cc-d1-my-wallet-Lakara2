@@ -13,26 +13,28 @@ public class Main {
         System.out.println("1. Ajouter une transaction");
         System.out.println("2. Afficher le solde");
         System.out.println("3. Consulter l'historique des transactions");
-        System.out.println("4. Quitter");
+        System.out.println("4. Conversion des devises");
+        System.out.println("5. Quitter");
 
         int choice = 0;
         boolean validChoice;
-        do {
-            System.out.print("Veuillez choisir une option (1 - 4) : ");
+        int i = 0;
+        while (choice != 5) {
+          /*
+        do {*/
+            System.out.print("Veuillez choisir une option (1 - 5) : ");
 
             while (!scanner.hasNextInt()) {
                 System.out.println("Veuillez entrer un nombre valide.");
                 scanner.next();
             }
 
-            choice = scanner.nextInt();
-            scanner.nextLine();
-
-            validChoice = (choice >= 1 && choice <= 4);
+            validChoice = (choice >= 1 && choice <= 5);
             if (!validChoice) {
                 System.out.println("Choix invalide. Veuillez choisir une option valide.");
             }
 
+        choice = scanner.nextInt();
         switch (choice) {
             case 1:
                     scanner.nextLine();
@@ -46,31 +48,41 @@ public class Main {
 
                     myWallet.addTransaction(date, amount, description);
                     System.out.println("Transaction ajoutée avec succès !");
+                i++;
                     break;
             case 2:
-                System.out.print("Veuillez entrer la devise de conversion (Euro, Dollar, Yen) : ");
-                String currencyChoice = scanner.nextLine();
-
-                double balance = myWallet.getBalance();
-                System.out.println("Solde actuel : " + CurrencyConverter.convertCurrency(balance, currencyChoice, myWallet));
+                System.out.println("Solde actuel : " + (myWallet.getBalance()));
+                i++;
                 break;
             case 3:
                     List<Transaction> transactions = myWallet.getTransactionHistory();
                     System.out.println("Historique des transactions :");
                     for (Transaction transaction : transactions) {
-                        System.out.println("Date : " + transaction.getDate() +
-                                ", Montant en Ariary : " + transaction.getAmount() +
-                                ", Description : " + transaction.getDescription());
-                        System.out.println("Montant en Euro : " + myWallet.convertToEuro(transaction.getAmount()));
-                        System.out.println("Montant en Dollar : " + myWallet.convertToDollar(transaction.getAmount()));
-                        System.out.println("Montant en Yen : " + myWallet.convertToYen(transaction.getAmount()));
+                        System.out.println("Date : " + transaction.date() +
+                                ", Montant en Ariary : " + transaction.amount() +
+                                ", Description : " + transaction.description());
+                        System.out.println("Montant en Ariary : " + (myWallet.getBalance()) + "Ar");
+                        System.out.println("Montant en Euro : " + myWallet.convertToEuro(transaction.amount()) + "Euro");
+                        System.out.println("Montant en Dollar : " + myWallet.convertToDollar(transaction.amount())+ "$");
+                        System.out.println("Montant en Yen : " + myWallet.convertToYen(transaction.amount()) + "Yen");
                     }
+                i++;
                     break;
-                case 4:
+            case 4 :
+                System.out.print("Veuillez entrer la devise de conversion (Euro, Dollar, Yen) : ");
+                String currencyChoice = scanner.nextLine();
+
+                double balance = myWallet.getBalance();
+                System.out.println("Solde actuel : " + CurrencyConverter.convertCurrency(balance, currencyChoice, myWallet));
+                i++;
+                break;
+            case 5:
                     System.out.println("Au revoir !");
                     break;
             }
-        } while (!validChoice);
+            /*
+        } while (!validChoice);*/
+        }
         scanner.close();
     }
 }

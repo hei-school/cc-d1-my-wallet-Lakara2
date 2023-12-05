@@ -7,9 +7,9 @@ public class CurrencyConverter {
                 return myWallet.convertToDollar(amount);
             case "yen":
                 return myWallet.convertToYen(amount);
-            default:
-                System.out.println("Devise non prise en charge.");
-                return amount;
+            /*default:
+                System.out.println("Devise non prise en charge.");*/
         }
-    } 
+        return amount;
+    }
 }

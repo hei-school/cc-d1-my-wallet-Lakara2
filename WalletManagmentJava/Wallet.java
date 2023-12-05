@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Wallet {
@@ -7,14 +7,13 @@ public class Wallet {
     private double dollarConversionRate = 0.00025;
     private double yenConversionRate = 0.028;
     private double balance;
-    private List<Transaction> transactionHistory;
+    private final List<Transaction> transactionHistory;
 
     public Wallet() {
         this.balance = 0.0;
         this.transactionHistory = new ArrayList<>();
     }
 
-    
     // Méthodes pour définir les taux de conversion
     public void setEuroConversionRate(double rate) {
         this.euroConversionRate = rate;
@@ -48,7 +47,7 @@ public void addTransaction(String date, double amount, String description) {
 
 public void sortTransactionsByDate() {
         List<Transaction> transactions = getTransactionHistory();
-        Collections.sort(transactions, (t1, t2) -> t1.getDate().compareTo(t2.getDate()));
+        transactions.sort(Comparator.comparing(Transaction::date));
     }
     public double getBalance() {
         return balance;
