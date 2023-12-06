@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -44,7 +46,15 @@ public void addTransaction(String date, double amount, String description) {
     transactionHistory.add(transaction);
     balance += amount;
 }
-
+public boolean isValidDate(String dateStr)
+{
+    try {
+        LocalDate.parse(dateStr);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+    }
+}
 public void sortTransactionsByDate() {
         List<Transaction> transactions = getTransactionHistory();
         transactions.sort(Comparator.comparing(Transaction::date));
