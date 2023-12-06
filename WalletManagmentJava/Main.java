@@ -18,10 +18,7 @@ public class Main {
 
         int choice = 0;
         boolean validChoice;
-        int i = 0;
         while (choice != 5) {
-          /*
-        do {*/
             System.out.print("Veuillez choisir une option (1 - 5) : ");
 
             while (!scanner.hasNextInt()) {
@@ -48,11 +45,9 @@ public class Main {
 
                     myWallet.addTransaction(date, amount, description);
                     System.out.println("Transaction ajoutée avec succès !");
-                i++;
-                    break;
+                break;
             case 2:
                 System.out.println("Solde actuel : " + (myWallet.getBalance()));
-                i++;
                 break;
             case 3:
                     List<Transaction> transactions = myWallet.getTransactionHistory();
@@ -66,22 +61,18 @@ public class Main {
                         System.out.println("Montant en Dollar : " + myWallet.convertToDollar(transaction.amount())+ "$");
                         System.out.println("Montant en Yen : " + myWallet.convertToYen(transaction.amount()) + "Yen");
                     }
-                i++;
-                    break;
+                break;
             case 4 :
                 System.out.print("Veuillez entrer la devise de conversion (Euro, Dollar, Yen) : ");
                 String currencyChoice = scanner.nextLine();
 
                 double balance = myWallet.getBalance();
                 System.out.println("Solde actuel : " + CurrencyConverter.convertCurrency(balance, currencyChoice, myWallet));
-                i++;
                 break;
             case 5:
                     System.out.println("Au revoir !");
                     break;
             }
-            /*
-        } while (!validChoice);*/
         }
         scanner.close();
     }
