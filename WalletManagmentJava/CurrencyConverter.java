@@ -7,9 +7,13 @@ public class CurrencyConverter {
                 return myWallet.convertToDollar(amount);
             case "yen":
                 return myWallet.convertToYen(amount);
-            /*default:
-                System.out.println("Devise non prise en charge.");*/
+            default:
+                System.out.println("Devise non prise en charge.");
         }
         return amount;
+    }
+    // Méthode pour vérifier si la devise choisie est valide
+    public static boolean isValidCurrency(String currency) {
+        return currency.equalsIgnoreCase("euro") || currency.equalsIgnoreCase("dollar") || currency.equalsIgnoreCase("yen");
     }
 }

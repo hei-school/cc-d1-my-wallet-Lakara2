@@ -47,7 +47,7 @@ public class Main {
                     System.out.println("Transaction ajoutée avec succès !");
                 break;
             case 2:
-                System.out.println("Solde actuel : " + (myWallet.getBalance()));
+                System.out.println("Solde actuel : " + (myWallet.getBalance()) + " ariary");
                 break;
             case 3:
                     List<Transaction> transactions = myWallet.getTransactionHistory();
@@ -57,18 +57,25 @@ public class Main {
                                 ", Montant en Ariary : " + transaction.amount() +
                                 ", Description : " + transaction.description());
                         System.out.println("Montant en Ariary : " + (myWallet.getBalance()) + "Ar");
-                        System.out.println("Montant en Euro : " + myWallet.convertToEuro(transaction.amount()) + "Euro");
-                        System.out.println("Montant en Dollar : " + myWallet.convertToDollar(transaction.amount())+ "$");
-                        System.out.println("Montant en Yen : " + myWallet.convertToYen(transaction.amount()) + "Yen");
+                        System.out.println("Montant en Euro : " + myWallet.convertToEuro(transaction.amount()) + " Euro");
+                        System.out.println("Montant en Dollar : " + myWallet.convertToDollar(transaction.amount())+ " $");
+                        System.out.println("Montant en Yen : " + myWallet.convertToYen(transaction.amount()) + " Yen");
                     }
                 break;
-            case 4 :
+            case 4:
+                scanner.nextLine();
                 System.out.print("Veuillez entrer la devise de conversion (Euro, Dollar, Yen) : ");
                 String currencyChoice = scanner.nextLine();
 
                 double balance = myWallet.getBalance();
-                System.out.println("Solde actuel : " + CurrencyConverter.convertCurrency(balance, currencyChoice, myWallet));
+
+                if (CurrencyConverter.isValidCurrency(currencyChoice)) {
+                    System.out.println("Solde actuel : " + CurrencyConverter.convertCurrency(balance, currencyChoice, myWallet) + " " + currencyChoice);
+                } else {
+                    System.out.println("Devise non prise en charge.");
+                }
                 break;
+
             case 5:
                     System.out.println("Au revoir !");
                     break;
