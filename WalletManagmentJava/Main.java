@@ -2,7 +2,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -89,7 +88,6 @@ public class Main {
                         }
                         break;
                     case 4:
-                        scanner.nextLine();
                         System.out.print("Veuillez entrer la devise de conversion (Euro, Dollar, Yen) : ");
                         String currencyChoice = scanner.nextLine();
 
