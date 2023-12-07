@@ -25,3 +25,4 @@ Ce projet est implémenté dans plusieurs langages de programmation :
 1. Cloner le dépôt GitHub.
 2. Suivre les instructions spécifiques à chaque langage pour exécuter le programme.
 3. Identifiant par defaut : bryan || mot de passe : lakara
+4. execution : gcc * -o andrana && ./andrana
